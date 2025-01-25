@@ -1,0 +1,179 @@
+<h2 mat-dialog-title>Country Details</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="card">
+    <div class="card-header bg-primary-subtle">
+      <h2 cdkFocusInitial>{{ data.country?.name?.common }}</h2>
+      <small>({{ data.country?.name?.official }})</small>
+    </div>
+    <div class="card-body">
+      <!-- Flags -->
+      <div class="row mt-4">
+        <div class="col-md-6 text-center">
+          <img
+            [src]="data.country?.flags?.png"
+            alt="{{ data.country?.flags?.alt }}"
+            class="img-fluid rounded shadow"
+            style="max-width: 200px"
+          />
+          <p class="mt-2">
+            <strong>Flag:</strong> {{ data.country?.flags?.alt }}
+          </p>
+        </div>
+        <div class="col-md-6 text-center">
+          <img
+            [src]="data.country?.coatOfArms?.png"
+            alt="Coat of Arms"
+            class="img-fluid rounded shadow"
+            style="max-width: 200px"
+          />
+          <p class="mt-2"><strong>Coat of Arms</strong></p>
+        </div>
+      </div>
+      <!-- Basic Information -->
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Alpha-2 Code:</strong> {{ data.country?.cca2 }}</p>
+          <p><strong>Alpha-3 Code:</strong> {{ data.country?.cca3 }}</p>
+          <p><strong>Numeric Code:</strong> {{ data.country?.ccn3 }}</p>
+          <p>
+            <strong>Top-Level Domains:</strong>
+            {{ data.country?.tld?.join(", ") }}
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Region:</strong> {{ data.country?.region }}</p>
+          <p><strong>Subregion:</strong> {{ data.country?.subregion }}</p>
+          <p>
+            <strong>Continents:</strong>
+            {{ data.country?.continents?.join(", ") }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Capital and Borders -->
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <p>
+            <strong>Capital:</strong> {{ data.country?.capital?.join(", ") }}
+          </p>
+          <p>
+            <strong>Independent:</strong>
+            {{ data.country?.independent ? "Yes" : "No" }}
+          </p>
+          <p>
+            <strong>UN Member:</strong>
+            {{ data.country?.unMember ? "Yes" : "No" }}
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p>
+            <strong>Landlocked:</strong>
+            {{ data.country?.landlocked ? "Yes" : "No" }}
+          </p>
+          <p>
+            <strong>Borders:</strong>
+            {{ data.country?.borders?.join(", ") || "None" }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Demonyms -->
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <p>
+            <strong>English Demonym:</strong>
+            {{ data.country?.demonyms?.eng?.f }}
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p>
+            <strong>French Demonym:</strong>
+            {{ data.country?.demonyms?.fra?.f }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Population and Area -->
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <p>
+            <strong>Population:</strong>
+            {{ data.country?.population | number }}
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Area:</strong> {{ data.country?.area | number }} km²</p>
+        </div>
+      </div>
+
+      <!-- Timezones -->
+      <div class="row mt-3">
+        <div class="col-12">
+          <p>
+            <strong>Timezones:</strong>
+            {{ data.country?.timezones?.join(", ") }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Currency -->
+      <div class="row mt-3">
+        <div class="col-12">
+          <p>
+            <strong>Currency:</strong>
+            <span *ngFor="let key of objectKeys(data.country?.currencies)">
+              {{ data.country?.currencies[key]?.name }} ({{
+                data.country?.currencies[key]?.symbol
+              }})
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Languages -->
+      <div class="row mt-3">
+        <div class="col-12">
+          <p>
+            <strong>Languages:</strong>
+            <span *ngFor="let key of objectKeys(data.country?.languages)">
+              {{ data.country?.languages[key] }}
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Gini Index -->
+      <div class="row mt-3">
+        <div class="col-12">
+          <p>
+            <strong>Gini Index (2019):</strong>
+            {{ data.country?.gini?.['2019'] || 'N/A' }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Maps -->
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <p>
+            <strong>Google Maps:</strong>
+            <a [href]="data.country?.maps?.googleMaps" target="_blank"
+              >Open in Google Maps</a
+            >
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p>
+            <strong>OpenStreetMap:</strong>
+            <a [href]="data.country?.maps?.openStreetMaps" target="_blank"
+              >Open in OpenStreetMap</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
