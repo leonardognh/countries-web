@@ -2,7 +2,7 @@
 
 <mat-form-field>
   <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input />
+  <input matInput (keypress)="applyFilter($event)" #input />
 </mat-form-field>
 
 <div class="mat-elevation-z8">
@@ -57,7 +57,7 @@
     ></tr>
 
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">
+      <td class="mat-cell text-white" colspan="5">
         No data matching the filter "{{ input.value }}"
       </td>
     </tr>
